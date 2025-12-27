@@ -14,7 +14,18 @@ def calculate_risk_score(age, pack_years, age_first_cigarette):
     
     Returns:
     float: Risk score (higher indicates higher risk)
+    
+    Raises:
+    ValueError: If any input is invalid (negative age, pack_years, or age_first_cigarette)
     """
+    # Input validation
+    if age <= 0:
+        raise ValueError("Age must be positive")
+    if pack_years < 0:
+        raise ValueError("Pack-years cannot be negative")
+    if age_first_cigarette <= 0:
+        raise ValueError("Age of first cigarette must be positive")
+    
     # Simple risk model: risk increases with pack-years and earlier smoking initiation
     # Base risk factor
     base_risk = pack_years * 0.5
